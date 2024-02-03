@@ -1,5 +1,5 @@
 try:
-    random = "bnh"
+    
     def encrypt(ini):
         ini = ini[::-1]
         leng = len(ini)
@@ -32,8 +32,8 @@ try:
     print("\n\n")
     print('*' * 10, "Welcome to Manav's Encrypter", '*' * 10)
     print("-" * 50)
-    print('Please note that words "bnh" must be present in the message to be decrypted')
     ans = input("Do you want to encrypt or decrypt a message? (y/n): ").lower()
+    random = input("Enter three random characters to be present as salting: ")
     while ans=="y":
         ans1 = input("Press 1 for encryption and 2 for decryption or press q to quit: ")
         if ans1 == "1":
