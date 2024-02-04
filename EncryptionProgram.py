@@ -20,7 +20,7 @@ try:
             print(f"The decrypted message is: {finn}")
         else:
             if random not in dec_str:
-                print("Invalid message entered!")
+                raise ValueError("The given message does not contain the salting!")
             else:
                 dec_fir = dec_str[-4]
                 dec_str=dec_str.replace(random,"")
@@ -33,22 +33,33 @@ try:
     print('*' * 10, "Welcome to Manav's Encrypter", '*' * 10)
     print("-" * 50)
     ans = input("Do you want to encrypt or decrypt a message? (y/n): ").lower()
-    random = input("Enter three random characters to be present as salting: ")
-    while ans=="y":
-        ans1 = input("Press 1 for encryption and 2 for decryption or press q to quit: ")
-        if ans1 == "1":
-            ini = input("Enter a message you want to encrypt: ").lower()
-            ini = ini.replace(" ","")
-            encrypt(ini)
-        elif ans1 == "2":
-            dec_str = input("Enter the message you want to decrypt: ").lower()
-            dec_str = dec_str.replace(" ","")
-            decrypt(dec_str)
-        elif ans1 == "q":
-            break
-        else:
-            print("Invalid input!")
-            break
+    print(f"You have chosen {ans}")
+    if ans=="y": 
+        random = input("Enter random characters to be present as salting (must be less than 3): ")
+        lenth = len(random)
+        if (lenth is not 3):
+               raise  ValueError("The salting should be less than 3 characters!")
+        print(f"You have chosen {random} as salting!")
+        while True:      
+            ans1 = input("Press 1 for encryption and 2 for decryption or press q to quit: ")
+            if ans1 == "1":
+                    ini = input("Enter a message you want to encrypt: ").lower()
+                    ini = ini.replace(" ","")
+                    encrypt(ini)
+            elif ans1 == "2":
+                    dec_str = input("Enter the message you want to decrypt: ").lower()
+                    dec_str = dec_str.replace(" ","")
+                    decrypt(dec_str)
+            elif ans1 == "q":
+                    break
+            else:
+                    raise  ValueError("Invalid input entered!")
+    elif ans=="n":
+        pass
+    else:
+        raise ValueError("Invalid input entered!")
+
+        
 
 finally:
-    print("Thanks for using my encrypter!")
+    print("Thanks for using my program!")
